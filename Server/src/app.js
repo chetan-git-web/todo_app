@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 const app = express();
+console.log("hello");
 app.use(cors());
 // .uses cors middleware 
 
@@ -16,6 +17,12 @@ app.use(express.static("public"))
 
 app.use(cookieParser())
 // used to access and set cookies in user browser
+
+// routes import 
+import userRoute from "./routes/user.routes.js"
+
+// routes declaration
+app.use("/api/v1/users",userRoute)
 
 
 export {app}

@@ -35,9 +35,10 @@ const userSchema = new mongoose.Schema({
 },{timestamps:true})
 // before entering the data in the database this pre middleware works
 userSchema.pre("save", async function(next) {
+    // if mdifies then retyrn next
     if(!this.isModified("password")) return next();
 
-    this.password = bcrypt.hash(this.password,10)
+    this.password = bcrypt.hash(this.password,10) // here 10 is number of rounds
 
     next()
 })
