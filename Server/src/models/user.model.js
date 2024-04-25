@@ -26,25 +26,28 @@ const userSchema = new mongoose.Schema({
     },
     avatar:{
         type:String, // cloudinary image
-        required: true
     },
     password:{
         type:String,
         required:true,
+    },
+    refreshToken:{
+        type:String
     }
 },{timestamps:true})
 // before entering the data in the database this pre middleware works
 userSchema.pre("save", async function(next) {
-    // if mdifies then retyrn next
+    // if mdifies then return next
     if(!this.isModified("password")) return next();
 
-    this.password = bcrypt.hash(this.password,10) // here 10 is number of rounds
-
+    this.password = await bcrypt.hash(this.password,10) // here 10 is number of rounds
+    console.log("ha chal rha hai")
+    console.log(this.password)
     next()
 })
 // this is the method which is used to recheck the password  provided by user
 userSchema.methods.isPasswordCorrect = async function(password){
-    await bcrypt.compare(password,this.password)
+    return await bcrypt.compare(password,this.password)
 }
 
 // to generate an access token
@@ -75,4 +78,5 @@ userSchema.methods.generateRefreshToken = function(){
     )
 }
 
-export const User = mongoose.model("User",usermodel)
+export const User = mongoose.model("User",userSchema)
+

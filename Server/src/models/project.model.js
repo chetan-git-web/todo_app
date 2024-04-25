@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { type } from "os";
 
-const projectModel = new mongoose.Schema({
+const projectScheme = new mongoose.Schema({
     projectname:{
         type:String,
         required: true
@@ -18,4 +18,4 @@ const projectModel = new mongoose.Schema({
     ]
 },{timestamps: true})
 
-export const Project = mongoose.model("Project",projectModel)
+export const Project = mongoose.model("Project",projectScheme)
