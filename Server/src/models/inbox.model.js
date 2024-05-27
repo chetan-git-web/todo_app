@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
-import { type } from "os";
 
-const projectScheme = new mongoose.Schema({
-    projectName:{
-        type:String,
-        required: true
-    },
+const inboxScheme = new mongoose.Schema({
     tasks:[
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -18,4 +13,4 @@ const projectScheme = new mongoose.Schema({
     },
 },{timestamps: true})
 
-export const Project = mongoose.model("Project",projectScheme)
+export const Project = mongoose.model("Project",inboxScheme)

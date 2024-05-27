@@ -4,8 +4,8 @@ import { upload } from "../middlewares/multer.middleware.js"
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { refreshAccessToken } from "../controllers/user.controller.js";
 
-
 const router = Router();
+///api/v1/users
 
 router.route("/register").post(
     // we are uploading files to local storage in public folder using multer
@@ -28,7 +28,7 @@ router.route("/logout").post(
     logoutUser
 )
 
-router.route("/refresh-token").post(
+router.route("/refresh-access-token").post(
     refreshAccessToken
 )
 

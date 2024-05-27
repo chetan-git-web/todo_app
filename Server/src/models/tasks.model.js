@@ -1,22 +1,22 @@
 import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema({
-    taskname:{
+    taskName:{
         type: String,
         required: true,
         trim:true,
     },
     dueDate:{
-        type: Date,
+        required: true,
+        type: String,
     },
     content:{
         type: String,
-        required: true,
     },
     priority:{
         type: Number,
         required: true,
-        min: 0,
+        min: 1,
         max: 4
     },
     createdBy:{
@@ -26,7 +26,7 @@ const taskSchema = new mongoose.Schema({
     comment:{
         type: String,
         trim: true
-    }
+    },
 }
 ,{timestamps:true})
 
